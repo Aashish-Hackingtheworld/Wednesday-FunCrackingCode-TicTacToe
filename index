@@ -1,0 +1,144 @@
+import turtle
+
+# Step 1: Screen setup
+screen = turtle.Screen()
+screen.title("Tic Tac Toe")
+screen.setup(width=______, height=______)  # Fill in width and height
+screen.bgcolor("______")  # Set the background color
+
+# Step 2: Create a turtle to draw the board
+board = turtle.Turtle()
+board.pensize(____)  # Set pen size for drawing grid lines
+board.speed(____)    # Set the speed for drawing the board
+
+# Step 3: Function to draw the Tic Tac Toe board
+def draw_board():
+    # Horizontal lines
+    board.penup()
+    board.goto(-300, 100)
+    board.pendown()
+    board.forward(______ )  # Draw first horizontal line
+
+    board.penup()
+    board.goto(-300, -100)
+    board.pendown()
+    board.________()  # Draw second horizontal line (Hint: Same as above)
+
+    # Vertical lines
+    board.penup()
+    board.goto(-100, 300)
+    board.setheading(______)  # Set heading for vertical lines
+    board.pendown()
+    board.________()  # Draw first vertical line
+
+    board.penup()
+    board.goto(100, 300)
+    board.pendown()
+    board.________()  # Draw second vertical line
+
+draw_board()
+
+# Step 4: Game state variables
+player = "X"
+game_over = False
+board_state = [["" for _ in range(____)] for _ in range(____)]  # Create a 3x3 grid
+
+# Step 5: Function to draw "X"
+def draw_x(x, y):
+    marker = turtle.Turtle()
+    marker.penup()
+    marker.goto(x - 50, y + 50)
+    marker.pendown()
+    marker.setheading(______)  # Set heading for the first diagonal line of "X"
+    marker.________()  # Draw first diagonal line
+
+    marker.penup()
+    marker.goto(x + 50, y + 50)
+    marker.pendown()
+    marker.setheading(______)  # Set heading for the second diagonal line of "X"
+    marker.________()  # Draw second diagonal line
+
+    marker.________()  # Hide the turtle after drawing
+
+# Step 6: Function to draw "O"
+def draw_o(x, y):
+    marker = turtle.Turtle()
+    marker.penup()
+    marker.goto(x, y - ______)  # Set position for drawing the circle
+    marker.pendown()
+    marker.________(______)  # Draw circle with a specific radius (Hint: Use the circle method)
+
+    marker.________()  # Hide the turtle after drawing
+
+# Step 7: Function to check if a player has won
+def check_winner():
+    # Horizontal and Vertical checks
+    for i in range(3):
+        if board_state[i][0] == board_state[i][1] == board_state[i][2] != "":
+            return True
+        if board_state[0][i] == board_state[1][i] == board_state[2][i] != "":
+            return True
+    
+    # Diagonal checks
+    if board_state[0][0] == board_state[1][1] == board_state[2][2] != "":
+        return True
+    if board_state[0][2] == board_state[1][1] == board_state[2][0] != "":
+        return True
+
+    return False  # Return True or False based on the win condition
+
+# Step 8: Function to handle mouse clicks
+def click_handler(x, y):
+    global player, game_over
+
+    if game_over:
+        return
+
+    # Determine row and column based on click position
+    row, col = None, None
+    if -300 < x < -100:
+        col = 0
+    elif -100 < x < 100:
+        col = __  # Fill in column number
+    elif 100 < x < 300:
+        col = __  # Fill in column number
+    
+    if 100 < y < 300:
+        row = 0
+    elif -100 < y < 100:
+        row = __  # Fill in row number
+    elif -300 < y < -100:
+        row = __  # Fill in row number
+
+    # Check if the cell is empty and place the mark
+    if row is not None and col is not None and board_state[______][______] == "":
+        x_pos = -200 + col * 200
+        y_pos = 200 - row * 200
+
+        if player == "X":
+            draw_x(x_pos, y_pos)
+            board_state[row][col] = "X"
+            if check_winner():
+                screen.title(f"Player {player} wins!")
+                game_over = True
+            else:
+                player = "O"  # Switch to player "O"
+        else:
+            draw_o(x_pos, y_pos)
+            board_state[row][col] = "O"
+            if check_winner():
+                screen.title(f"Player {player} wins!")
+                game_over = True
+            else:
+                player = "X"  # Switch to player "X"
+
+    # Check for a draw
+    if not any("" in row for row in board_state) and not game_over:
+        screen.title("It's a draw!")
+        game_over = True
+
+# Step 9: Detect clicks to place markers
+screen.onclick(__________)  # Fill in the correct function to handle clicks
+
+# Step 10: Keep the window open
+turtle.__________()  # This function keeps the turtle window open
