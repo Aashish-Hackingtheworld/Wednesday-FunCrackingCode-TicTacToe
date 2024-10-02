@@ -1,3 +1,7 @@
+Here is the link for different Codespaces:
+On Browser: https://github.com/codespaces/fluffy-space-bassoon-g475gg7gp4463p9j4?editor=web
+Visual Studio Code: https://github.com/codespaces/fluffy-space-bassoon-g475gg7gp4463p9j4?editor=vscode
+
 # Wednesday-FunCrackingCode-TicTacToe
 Here are the instruction to crack the code:
 
